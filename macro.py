@@ -46,7 +46,7 @@ def create_draws(im, palette):
     for i in range(size):
         for j in range(size):
             pj, pi = get_palette_index(im[i,j])
-            draws["{}{}".format(pj,pi)].append((i, j))
+            draws["{}{}".format(pj,pi)].append((j, i))
 
     return draws
 
@@ -78,7 +78,7 @@ def draw(draws, pixel_size, start_cord, interval):
     for draw in draws:
         x = sx + pw*draw[0]+pw/2
         y = sy + ph*draw[1]+ph/2
-        pyautogui.click(x=x, y=y, interval=interval, button="left")
+        pyautogui.click(x=x, y=y, button="left")
         if keyboard.is_pressed("q"): break
 
     is_pressed = True
