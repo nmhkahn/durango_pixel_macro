@@ -55,11 +55,13 @@ def get_board_size():
     def set_xy():
         global bx, by
         bx, by = pyautogui.position()
+        print("Upper left is ({}, {})".format(bx, by))
 
     def set_wh():
         global bx, by, bw, bh
         tx, ty = pyautogui.position()
         bw, bh = tx-bx, ty-by
+        print("Below right is ({}, {})".format(tx, ty))
     
     print("Aim the position and press w or e. q to quit")
     keyboard.add_hotkey("w", set_xy)
@@ -93,7 +95,7 @@ def main():
     args = parser.parse_args()
 
     im = misc.imread(args.path, mode="RGB")
-    palette = create_palette("picker.png", 40)
+    palette = create_palette("picker.png", 50)
 
     draws = create_draws(im, palette)
     pixel_w, pixel_h, start_w, start_h = get_board_size()
